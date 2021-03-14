@@ -22,8 +22,9 @@ export function TaskList() {
         isComplete: false
       };
 
-
       setTasks([...tasks, addNewTask]);
+
+      setNewTaskTitle('');
     }
     return;
   }
@@ -31,7 +32,7 @@ export function TaskList() {
   function handleToggleTaskCompletion(id: number) {
     const taskIdIndex = tasks.findIndex(taskIndex => taskIndex.id === id);
     const task = tasks[taskIdIndex];
-    task.isComplete = true;
+    task.isComplete = !task.isComplete;
     const filterTask = tasks.filter(task => task.id !== id);
     setTasks([...filterTask, task]);
   }
