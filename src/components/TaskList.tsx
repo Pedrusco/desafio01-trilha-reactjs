@@ -30,11 +30,21 @@ export function TaskList() {
   }
 
   function handleToggleTaskCompletion(id: number) {
-    const taskIdIndex = tasks.findIndex(taskIndex => taskIndex.id === id);
-    const task = tasks[taskIdIndex];
-    task.isComplete = !task.isComplete;
-    const filterTask = tasks.filter(task => task.id !== id);
-    setTasks([...filterTask, task]);
+    const toggleTaskComplete = tasks.map(task => {
+      const newTask = {
+        ...task,
+        isComplete: !task.isComplete
+      }
+
+      if (task.id === id) {
+        return newTask;
+      }
+      else {
+        return task;
+      }
+    })
+
+    setTasks(toggleTaskComplete);
   }
 
   function handleRemoveTask(id: number) {
